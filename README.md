@@ -1,3 +1,3 @@
 # Econometria Avançada - D1
-* Itens de 1 à 8;
+* Perguntas e respostas dos itens de 1 à 8;
 * Tabela utilizada para fazer os itens.
