@@ -1,0 +1,165 @@
+Nome: Lucas Tomaz Sobral dos Santos					     RA: 816119832
+Nome:
+Nome: 
+
+Turma: CEC3BN-MCA								Sala: 401D
+
+Econometria Avançada – D1
+ 
+1.	Seus dados constituem-se de uma Série Temporal? Justifique sua resposta.
+Sim, pois os dados utilizados baseiam-se em observações feitas em uma variável ao longo do tempo. A variável utilizada foi o pregão da Ibovespa no mês de novembro, do ano de 1996.
+
+2.	O que é estacionariedade? Seus dados são estacionários? Implemente o teste de Dick Fuller para estacionariedade e interprete os resultados.
+Estacionariedade é quando uma série temporal se desenvolve no tempo aleatoriamente ao redor de uma média constante, refletindo alguma forma de equilíbrio estável, tornando esta série estacionária, quando há uma tendência, a série é não-estacionária.
+Os dados utilizados não são estacionários.
+
+Teste DF-DickFuller sem drift e sem tendência
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression none 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 - 1)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-108.260  -28.992    5.824   27.127   83.482 
+
+Coefficients:
+        Estimate Std. Error t value Pr(>|t|)
+z.lag.1 0.000177   0.001584   0.112    0.912
+
+Residual standard error: 45.62 on 18 degrees of freedom
+Multiple R-squared:  0.0006938,	Adjusted R-squared:  -0.05482 
+F-statistic: 0.0125 on 1 and 18 DF,  p-value: 0.9122
+
+
+Value of test-statistic is: 0.1118 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau1 -2.66 -1.95  -1.6
+
+Teste DF-DickFuller com drift e sem tendência
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression drift 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-91.010 -24.589   7.091  28.213  62.906 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)
+(Intercept) 1994.1946  1188.3397   1.678    0.112
+z.lag.1       -0.3015     0.1798  -1.677    0.112
+
+Residual standard error: 43.48 on 17 degrees of freedom
+Multiple R-squared:  0.142,	Adjusted R-squared:  0.09149 
+F-statistic: 2.813 on 1 and 17 DF,  p-value: 0.1118
+
+
+Value of test-statistic is: -1.6771 1.4149 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau2 -3.75 -3.00 -2.63
+phi1  7.88  5.18  4.12
+
+Teste DF-DickFuller com drift e com tendência
+
+############################################### 
+# Augmented Dickey-Fuller Test Unit Root Test # 
+############################################### 
+
+Test regression trend 
+
+
+Call:
+lm(formula = z.diff ~ z.lag.1 + 1 + tt)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-87.721 -24.949   8.591  28.340  61.524 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)
+(Intercept) 1867.6620  1248.8492   1.496    0.154
+z.lag.1       -0.2837     0.1883  -1.506    0.151
+tt             0.8633     1.9077   0.453    0.657
+
+Residual standard error: 44.54 on 16 degrees of freedom
+Multiple R-squared:  0.1528,	Adjusted R-squared:  0.04691 
+F-statistic: 1.443 on 2 and 16 DF,  p-value: 0.2654
+
+
+Value of test-statistic is: -1.5064 0.9674 1.4429 
+
+Critical values for test statistics: 
+      1pct  5pct 10pct
+tau3 -4.38 -3.60 -3.24
+phi2  8.21  5.68  4.67
+phi3 10.61  7.24  5.91
+
+
+ 	T Crítico	Estatística T	P-valor
+SEM CONSTANTE E SEM TENDÊNCIA			 
+Yt-1	-1.95	0.112	0.912
+COM CONSTANTE			 
+Yt-1	-3	-1.677	0.112
+Drift	-3	1.678	0.112
+COM CONSTANTE E COM TENDÊNCIA			 
+Yt-1	-3.6	-1.506	0.151
+Drift	-3.6	1.496	0.154
+Trend	-3.6	0.453	0.657
+...
+3.	Apresente os gráficos da Função de Correlação – FAC e Função de Correlação Parcial – FAC-P. Há indicação de sazonalidade nos dados? Justifique sua resposta.
+ 
+ 
+...
+4.	Observando o gráfico FAC e FAC-P, qual a ordem sugerida para: 
+a) Um processo autorregressivo (AR)
+Ordem 1.
+b) Um processo de médias móveis (MA)
+Ordem 2.
+c) Um processo autorregressivo de médias móveis (ARMA)
+Ordem 1, 2.
+5.	Quais combinações de modelos AR, MA e ARMA devem ser estimados seguindo a FAC e a FAC-P?
+AR (1), MA (1), MA (2), ARMA (1,1), ARMA (1,2).
+
+6.	O que são Critérios de Informação AIC e BIC? Estime os modelos sugeridos no item 5 e extraia os seus valores AIC e BIC. Não é necessário apresentar os resultados das estimações, apenas dos Critérios de Informação indicados.
+O critério de informação é uma forma de encontrar o número ideal de parâmetros para um modelo. A ideia vem de que a cada parâmetro adicionado, normalmente o erro diminui. Essa diminuição se dá à custa do aumento de mais regressores. Para balancear a redução dos erros e o aumento do número de regressores, o Critério de Informação associa uma penalidade a esse aumento. Se a penalidade for menor que a soma de resíduos, o regressor adicional deve ser adicionado ao modelo. Se a penalidade for maior que a diminuição da soma, o regressor adicional traz mais custos que benefícios e não deve ser adicionado. O melhor modelo será o aquele que poupar mais parâmetros e conseguir a menor variância dos erros possíveis, o mais parcimonioso, ou seja com o menor valor de Critério de Informação. O primeiro termo mede a adequação ao processo. O segundo termo penaliza a adição de parâmetros para adequação ao processo. O número de observações T é invariante sendo assim, é necessário comparar processos com mesmo valor de T. O melhor modelo será o aquele com menor AIC ou BIC. Os modelos devem conter amostras iguais para serem comparados. O critério AIC é mais forte que o BIC.
+
+AIC (AR1)	AIC (MA1)	AIC (ARMA11)
+211.2389	216.0231	213.2386
+BIC (AR1)	BIC (MA1)	BIC (ARMA11)
+214.2261	219.0103	217.2216
+		AIC (MA2)	AIC (ARMA12)
+		210.0281	211.8751
+		BIC (MA2)	BIC (ARMA12)
+		214.011	216.8538
+
+7.	De acordo com item 6, qual seria o melhor modelo para se estimar os dados apresentados? Apresente o modelo seguindo sua formulação.
+
+ 	Modelo	AIC	BIC
+3	MA2	210.028.054.403.671	214.010.983.497.887
+1	AR1	211.238.862.838.883	214.226.059.659.545
+5	ARMA12	211.875.109.963.528	216.853.771.331.298
+4	ARMA11	213.238.639.963.173	217.221.569.057.389
+2	MA1	216.023.138.388.955	219.010.335.209.617
+
+O modelo MA(2), pois apresenta os menores resultados AIC e BIC, sendo o AIC mais forte que o BIC.
+
+8.	Interprete o melhor modelo considerando a defasagem temporal e os parâmetros estimados.
+
